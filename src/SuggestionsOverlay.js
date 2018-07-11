@@ -87,6 +87,11 @@ class SuggestionsOverlay extends Component {
 
     let { mentionDescriptor, query } = descriptor
 
+    let onClick;
+    if (!suggestion.disabled) {
+        onClick = () => this.select(suggestion, descriptor);
+    }
+
     return (
       <Suggestion
         style={this.props.style('item')}
@@ -97,7 +102,7 @@ class SuggestionsOverlay extends Component {
         descriptor={mentionDescriptor}
         suggestion={suggestion}
         focused={isFocused}
-        onClick={() => this.select(suggestion, descriptor)}
+        onClick={onClick}
         onMouseEnter={() => this.handleMouseEnter(index)}
       />
     )
